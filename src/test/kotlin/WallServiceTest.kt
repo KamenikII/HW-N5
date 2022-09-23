@@ -8,12 +8,12 @@ class WallServiceTest {
     fun add() {
         // создаём целевой сервис
         val service = WallService
-        val post = Post(from_id = 0, date = 0, post_type = "post", content = "test")
+        val post = Post(fromId = 0, date = 0, postType = "post", content = "test")
         // заполняем пост
         service.add(post)
         val result = (service.giveId(0) != 0)
 
-        assertEquals(true, result)
+        assertTrue(result)
     }
 
     @Test
@@ -21,15 +21,15 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService
         // заполняем несколькими постами
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test1"))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test2"))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test3"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test1"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test2"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test3"))
         // создаём информацию об обновлении
-        val update = Post(id = 1, from_id = 0, date = 0, post_type = "post", content = "new")
+        val update = Post(id = 1, fromId = 0, date = 0, postType = "post", content = "new")
 
         // выполняем целевое действие
         val result = service.update(update)
-        assertEquals(true, result)
+        assertTrue(result)
     }
 
     @Test
@@ -37,15 +37,15 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService
         // заполняем несколькими постами
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test1"))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test2"))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test3"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test1"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test2"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test3"))
         // создаём информацию об обновлении
-        val update = Post(id = 4, from_id = 0, date = 0, post_type = "post", content = "new")
+        val update = Post(id = 4, fromId = 0, date = 0, postType = "post", content = "new")
 
         // выполняем целевое действие
         val result = service.update(update)
-        assertEquals(false, result)
+        assertFalse(result)
     }
 
     @Test
@@ -53,14 +53,14 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService
         // заполняем несколькими постами
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test1", can_edit = false))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test2"))
-        service.add(Post(from_id = 0, date = 0, post_type = "post", content = "test3"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test1", canEdit = false))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test2"))
+        service.add(Post(fromId = 0, date = 0, postType = "post", content = "test3"))
         // создаём информацию об обновлении
-        val update = Post(id = 0, from_id = 0, date = 0, post_type = "post", content = "new")
+        val update = Post(id = 0, fromId = 0, date = 0, postType = "post", content = "new")
 
         // выполняем целевое действие
         val result = service.update(update)
-        assertEquals(false, result)
+        assertFalse(result)
     }
 }

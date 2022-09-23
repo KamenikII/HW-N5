@@ -5,8 +5,7 @@ object WallService {
 
     fun add(post: Post): Post {
         val i: Int = posts.size
-        post.id = i+1
-        posts += post
+        posts += post.copy(id = i+1)
         return posts.last()
     }
 
@@ -20,8 +19,9 @@ object WallService {
 
     fun update(post: Post): Boolean {
         for ((index, p) in posts.withIndex()) {
-            if ((post.id == p.id) && (post.can_edit == p.can_edit)) {
-                    posts[index] = p.copy(content = post.content)
+            if ((post.id == p.id) && (post.canEdit == p.canEdit)) {
+                    posts[index] = p.copy(postType = post.postType, canPin = post.canPin, markedAsAds = post.markedAsAds,
+                                          friendsOnly = post.friendsOnly, isPinned = post.isPinned, content = post.content)
                     return true
             }
         }
